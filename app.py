@@ -1,7 +1,15 @@
+import os
 import re
 from telethon import TelegramClient, errors
 from cryptography.fernet import Fernet
 
+# ============================================
+# 🔑 مفاتيح API الخاصة بتطبيقك في تلجرام
+# ============================================
+# في Vercel: ضعها في Environment Variables بنفس الأسماء
+# في التشغيل المحلي: غير الأصفار والقيم أدناه إلى بياناتك الحقيقية
+API_ID = int(os.environ.get('TELEGRAM_API_ID', 32220564))  # استبدل 123456 برقمك
+API_HASH = os.environ.get('TELEGRAM_API_HASH', 'c3048de549dd3c07bb9de40d28db5a04')  # استبدل بـ API_HASH حقك
 # مفتاح التشفير (خليه في متغيرات البيئة Vercel عشان الأمان)
 # أنشئ مفتاح مرة وحدة وضعه في ENV
 # ENCRYPTION_KEY = Fernet.generate_key()  # استخدم هذا مرة وانسخ الناتج
