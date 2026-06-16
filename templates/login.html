@@ -3,38 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <title>تسجيل الدخول</title>
+  <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
-<h2>تسجيل الدخول</h2>
+<div class="container">
+
+<div class="card">
+
+<div class="logo">
+<h1>TeleFlow</h1>
+<p>مرحباً بعودتك</p>
+</div>
 
 <form method="POST">
 
-<input
-type="email"
+<input type="email"
 name="email"
 placeholder="البريد الإلكتروني"
 required>
 
-<br><br>
-
-<input
-type="password"
+<input type="password"
 name="password"
 placeholder="كلمة المرور"
 required>
 
-<br><br>
-
 <button type="submit">
-دخول
+تسجيل الدخول
 </button>
 
 </form>
 
+<div class="link">
 <a href="/register">
-إنشاء حساب
+إنشاء حساب جديد
 </a>
+</div>
 
+</div>
+</div>
 </body>
 </html>
