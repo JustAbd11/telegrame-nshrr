@@ -44,6 +44,90 @@
     </p>
 </div>
 
+  <div class="accounts-section">
+    <h2>🔐 ربط حساب تلجرام الشخصي</h2>
+    
+    <!-- التنبيه -->
+    <div style="background: #fef2f2; border-right: 4px solid #dc2626; padding: 15px; border-radius: 12px; margin-bottom: 20px;">
+        <h4 style="color: #991b1b; margin: 0;">⚠️ تنبيه هام جداً</h4>
+        <p style="color: #7f1d1d; margin: 5px 0 0 0; font-size: 14px;">
+            نوصي بشدة باستخدام <strong>حساب تلجرام ثانوي (ليس حسابك الشخصي الأساسي)</strong> لهذه الخدمة، 
+            لتجنب أي حظر أو تقييد على حسابك الرئيسي. 
+            <br>أنت تتحمل المسؤولية الكاملة عن حسابك، ونحن نوفر لك الأداة فقط.
+        </p>
+    </div>
+
+    <!-- نموذج إدخال الرقم -->
+    <div class="modal" id="step1">
+        <form id="phoneForm">
+            <input type="text" name="phone_number" placeholder="أدخل رقم هاتفك مع المفتاح (مثال: +966501234567)" required>
+            <button type="submit" class="add-account-btn">إرسال رمز التحقق</button>
+        </form>
+    </div>
+
+    <!-- نموذج إدخال الكود (يظهر بعد الإرسال) -->
+    <div class="modal" id="step2" style="display:none;">
+        <form id="codeForm">
+            <input type="text" name="code" placeholder="أدخل الرمز المرسل من تلجرام" required>
+            <input type="password" name="password" placeholder="كلمة مرور التحقق بخطوتين (اختياري)">
+            <button type="submit" class="add-account-btn">تأكيد الربط</button>
+        </form>
+        <p id="statusMessage"></p>
+    </div>
+
+    <!-- عرض الحسابات المرتبطة -->
+    <div class="account-list">
+        {% if sessions %}
+            {% for sess in sessions %}
+            <div class="account-card">
+                <div style="display:flex; justify-content:space-between;">
+                    <div>
+                        <div class="account-name">📱 {{ sess.phone_number }}</div>
+                        <div style="color:#94a3b8; font-size:13px;">مرتبط منذ {{ sess.created_at[:10] }}</div>
+                    </div>
+                    <form method="POST" action="/remove-session/{{ sess.id }}">
+                        <button style="background:#dc2626; border:none; padding:6px 14px; border-radius:8px; color:white;">فك الربط</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="account-card">
+                <div class="account-name" style="color:#94a3b8;">❌ لا توجد حسابات مرتبطة</div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+document.getElementById('phoneForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const res = await fetch('/request-telegram-code', { method: 'POST', body: formData });
+    const data = await res.json();
+    if (data.success) {
+        document.getElementById('step1').style.display = 'none';
+        document.getElementById('step2').style.display = 'block';
+        document.getElementById('statusMessage').innerText = '✅ تم إرسال الرمز، تحقق من تلجرام';
+    } else {
+        alert('خطأ: ' + data.error);
+    }
+});
+
+document.getElementById('codeForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const res = await fetch('/verify-telegram-code', { method: 'POST', body: formData });
+    const data = await res.json();
+    if (data.success) {
+        alert('🎉 تم ربط الحساب بنجاح!');
+        location.reload();
+    } else {
+        alert('خطأ: ' + data.error);
+    }
+});
+</script>
+
 </div>
 </body>
 </html>
