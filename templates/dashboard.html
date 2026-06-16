@@ -3,18 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <title>لوحة التحكم</title>
+  <link rel="stylesheet" href="/static/style.css">
+
 </head>
 <body>
+<div class="dashboard">
 
-<h2>مرحباً</h2>
+<div class="topbar">
+<h2>لوحة التحكم</h2>
 
-<p>{{ email }}</p>
-
-<p>الخطة الحالية: مجانية</p>
-
-<a href="/logout">
+<a href="/logout" class="logout">
 تسجيل الخروج
 </a>
+</div>
 
+<div class="stats">
+
+<div class="stat-card">
+<h3>الباقة الحالية</h3>
+<span>FREE</span>
+</div>
+
+<div class="stat-card">
+<h3>الحسابات المرتبطة</h3>
+<span>0</span>
+</div>
+
+<div class="stat-card">
+<h3>الرسائل المجدولة</h3>
+<span>0</span>
+</div>
+
+</div>
+
+</div>
 </body>
 </html>
