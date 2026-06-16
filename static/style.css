@@ -131,3 +131,47 @@ button:hover{
     display:block;
     margin-top:10px;
 }
+.accounts-section{
+    margin-top:30px;
+}
+
+.add-account-btn{
+    background:#2563eb;
+    border:none;
+    padding:12px 18px;
+    border-radius:12px;
+    color:white;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.account-list{
+    margin-top:20px;
+    display:grid;
+    gap:15px;
+}
+
+.account-card{
+    background:#111827;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:16px;
+    padding:20px;
+}
+
+.account-name{
+    font-size:18px;
+    font-weight:600;
+}
+
+.account-phone{
+    color:#94a3b8;
+    margin-top:6px;
+}
+
+.modal{
+    background:#111827;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:25px;
+    margin-top:20px;
+}
