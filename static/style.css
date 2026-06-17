@@ -442,3 +442,33 @@ button:active {
         grid-template-columns: 1fr;
     }
 }
+
+/* إظهار أقسام الربط */
+.accounts-section {
+    display: block !important;
+    margin-top: 30px;
+}
+
+.modal {
+    display: block !important;
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+#step1, #step2 {
+    display: block !important;
+}
+
+#step2 {
+    display: none !important; /* يظهر فقط بعد الضغط على إرسال الرمز */
+}
+
+.alert-box {
+    background: #fef2f2;
+    border-right: 4px solid #dc2626;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
